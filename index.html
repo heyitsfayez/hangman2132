@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- astronaut favicon: <a href="https://www.flaticon.com/free-icons/astronaut" title="astronaut icons">Astronaut icons created by Vitaly Gorbachev - Flaticon</a>   -->
+    <link
+      rel="shortcut icon"
+      href="../images/favicon_io/astronaut.png"
+      type="image/x-icon"
+    />
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="../css/joshcomeaureset.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"
+      defer
+    ></script>
+    <script src="../scripts/hangman.js" defer></script>
+    <script src="../scripts/loading.js" defer></script>
+    <script src="../scripts/modal.js" defer></script>
+  </head>
+  <body>
+    <!-- bg video -->
+    <!-- Video by Oleg Gamulinskii: https://www.pexels.com/video/shades-of-lights-in-the-outer-space-2611250/ -->
+    <video id="video-bg" autoplay muted loop>
+      <source src="../videos/deepSpace.mp4" type="video/mp4" />
+    </video>
+
+    <div id="loading-container"></div>
+
+    <header>
+      <h1>Hangman in Space 👨‍🚀</h1>
+      <p id="attempts-display" class="top-left"></p>
+      <button id="mute-button" class="mute-button">Mute 🔈</button>
+    </header>
+
+    <main class="container">
+      <div id="game-container">
+        <div id="word-container">
+          <p id="word-display" class="word"></p>
+        </div>
+        <div id="letters-container">
+          <h2>Guess a letter:</h2>
+          <div id="letters-display" class="letters"></div>
+          <button id="hint-icon" class="letter-button">💡</button>
+        </div>
+        <div id="hint-container">
+          <p id="hint-display" style="display: none"></p>
+        </div>
+        <div id="hangman-container">
+          <img
+            id="error1"
+            src="../images/emojis/error1.png"
+            class="error-image"
+            alt="sad astronaut graphic"
+          />
+          <img
+            id="error2"
+            src="../images/emojis/error2.png"
+            class="error-image"
+            alt="sad astronaut graphic"
+          />
+          <img
+            id="error3"
+            src="../images/emojis/error3.png"
+            class="error-image"
+            alt="sad astronaut graphic"
+          />
+          <img
+            id="error4"
+            src="../images/emojis/error4.png"
+            class="error-image"
+            alt="sad astronaut graphic"
+          />
+          <img
+            id="error5"
+            src="../images/emojis/error5.png"
+            class="error-image"
+            alt="sad astronaut graphic"
+          />
+        </div>
+        <div id="message-container">
+          <p id="message-display"></p>
+        </div>
+        <button
+          id="play-again-button"
+          class="play-again-button"
+          style="display: none"
+        >
+          Play Again
+        </button>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; Copyright, left & center</p>
+      <p>Rawas, 2024</p>
+      <p>Made with love in Canada 🍁</p>
+    </footer>
+
+    <div id="modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <div id="winning-animation"></div>
+        <p id="guessed-word-display"></p>
+        <button id="modal-play-again-button" class="play-again-button">
+          Play Again
+        </button>
+      </div>
+    </div>
+
+    <audio id="background-music" src="../sounds/spaceMusic.wav" loop></audio>
+    <audio
+      id="correct-sound"
+      src="../sounds/correctGuess.wav"
+      preload="auto"
+    ></audio>
+    <audio
+      id="wrong-sound"
+      src="../sounds/wrongGuess.wav"
+      preload="auto"
+    ></audio>
+  </body>
+</html>

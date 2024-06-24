@@ -1,0 +1,342 @@
+@font-face {
+  font-family: "pressStart";
+  src: url("../fonts/pressStart2p/PressStart2P-Regular.woff2") format("woff2"),
+    url("../fonts/pressStart2p/PressStart2P-Regular.woff") format("woff");
+}
+:root {
+  --primary: $primary-color;
+  --secondary: $secondary-color;
+  --light: $light-color;
+  --dark: $dark-color;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* my css */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "pressStart", sans-serif;
+  background-size: cover;
+  color: #fffcfc;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  color: #fffcfc;
+  position: relative;
+}
+
+header h1 {
+  margin: 1rem;
+}
+
+.top-left,
+.mute-button {
+  margin: 1.5rem;
+}
+
+.top-left {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.mute-button {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
+@media (min-width: 1400px) {
+  header {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .top-left {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+  .mute-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+}
+main {
+  flex: 1;
+  padding: 1rem;
+  color: #fffcfc;
+  position: relative;
+}
+
+h1 {
+  color: #fffcfc;
+  text-align: center;
+  font-size: 2rem;
+}
+
+h2 {
+  padding-bottom: 5rem;
+}
+
+footer {
+  color: #fffcfc;
+  padding: 1rem;
+}
+
+footer p {
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1024px;
+  position: relative;
+}
+
+#game-container {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem; /* Adjust to move down the keyboard */
+}
+
+.word {
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
+
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.letter-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #000000;
+  color: #fffcfc;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 0 10px #024873, 0 0 20px #024873;
+  font-family: "pressStart", sans-serif;
+  border: 2px solid #024873;
+  text-shadow: 0 0 5px #fffcfc;
+}
+
+.letter-button:hover {
+  background-color: #070019;
+}
+
+.letter-button:disabled {
+  background-color: #024873;
+  cursor: not-allowed;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.play-again-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #070019;
+  color: #fffcfc;
+  cursor: pointer;
+  font-size: 1rem;
+  border: 3px solid #070019;
+}
+
+.play-again-button:hover {
+  background-color: #024873;
+  border: 3px solid #070019;
+}
+
+.error-image {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.error-image.show {
+  display: block;
+  opacity: 1;
+}
+
+.error-image.hide {
+  opacity: 0;
+}
+
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire viewport */
+  z-index: -1; /* Place it behind other content */
+}
+
+/* Lottie Animation */
+#animation-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#animation-container.fade-out {
+  animation: fadeOut 1s forwards;
+}
+
+#loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#loading-container > div {
+  width: 50vw;
+  max-width: 400px;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 100; /* Sits on top */
+  left: 0;
+  top: 25%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #024873;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #000000;
+  width: 50%; /* Adjust the size */
+  max-width: 600px; /* Limit the width */
+  text-align: center;
+  animation: easeIn 0.5s; /* Ease-in animation */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Backdrop color */
+  z-index: 99;
+  pointer-events: none; /* Disable pointer events on the backdrop */
+}
+
+@keyframes easeIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+#winning-animation {
+  width: 100%;
+  height: 300px;
+}
+
+#modal-play-again-button {
+  margin-top: 20px;
+}
+
+#hint-display {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #fffcfc; /* Make hint text white */
+}
+
+/* Mute button styles */
+.mute-button {
+  padding: 0.5rem;
+  border: none;
+  background-color: #000000;
+  color: #fffcfc;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.mute-button:hover {
+  background-color: #070019;
+}
+
+/* Attempts display styles */
+.top-left {
+  font-size: 1rem;
+  color: #fffcfc;
+}
+
+/* Tip box styles */
+#hint-tip {
+  display: none;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #070019;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  z-index: 10;
+  transition: opacity 4s ease-in-out;
+}
+
+#hint-tip.show {
+  display: block;
+  opacity: 1;
+}
+
+#hint-tip.hide {
+  opacity: 0;
+}
